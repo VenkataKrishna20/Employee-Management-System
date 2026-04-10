@@ -8,6 +8,7 @@ Project is currently under development.
 ## 🛠️ Tech Stack
 - Frontend: React.js (Vite, Tailwind CSS)
 - Backend: Node.js, Express.js
+- DataBase: MongoDB
 
 ## 📁 Structure
 Employee-Management-System/
