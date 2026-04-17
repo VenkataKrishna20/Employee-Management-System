@@ -1,18 +1,31 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import {BrowserRouter,Routes,Route,Navigate} from 'react-router-dom';
+import Login from "./pages/Login.jsx"
+import AdminDashboard from './pages/AdminDashboard.jsx';
+import EmployeeDashboard from './pages/EmployeeDashboard.jsx';
 import './App.css'
+import PrivateRoutes from './utils/PrivateRoutes.jsx';
+import RoleBasedRoutes from './utils/RoleBasedRoutes.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-blue-500">
-      Tailwind Working 🚀
-    </h1>
-    </div>
+    <BrowserRouter> 
+      <Routes>
+        <Route path="/" element={<Navigate to="/admin-dashboard" />} ></Route>
+        <Route path="/login" element={<Login />} ></Route>
+        <Route path="/admin-dashboard" element={
+          <PrivateRoutes>
+            <RoleBasedRoutes requiredRole={["admin"]}>
+              <AdminDashboard/>
+            </RoleBasedRoutes>
+          </PrivateRoutes>
+          } ></Route>
+        <Route path="/employee-dashboard" element={<EmployeeDashboard/>} ></Route>
+
+      </Routes>
+    </BrowserRouter>
   )
 }
 
