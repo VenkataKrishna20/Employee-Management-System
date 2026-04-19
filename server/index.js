@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from "dotenv"
 import cors from 'cors';
-
+import departmentRouter from './routes/department.js'
 import authRouter from './routes/authRouter.js'
 import connectToDatabase from './db/db.js';
 
@@ -16,6 +16,8 @@ app.use(express.json());
 
 //Roues
 app.use('/api/auth',authRouter);
+app.use('/api/department',departmentRouter)
+
 //Start Server
 const startServer = async ()=>{
     try{
